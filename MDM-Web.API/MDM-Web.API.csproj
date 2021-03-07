@@ -5,5 +5,16 @@
         <RootNamespace>MDM_Web.API</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+      <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers" />
+    </ItemGroup>
+
 
 </Project>
