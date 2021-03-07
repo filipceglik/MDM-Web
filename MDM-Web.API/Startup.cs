@@ -66,8 +66,7 @@ namespace MDM_Web.API
                 options.AddPolicy("RequireAdministratorRole",
                     policy => policy.RequireRole("Owner"));
             });
-            //services.AddAuthorization();
-            //services.AddSwaggerGen();
+           
             services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -108,12 +107,25 @@ namespace MDM_Web.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MDM API");
+            });
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
