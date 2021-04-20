@@ -9,4 +9,8 @@
       <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MDM-Web.API.Model\MDM-Web.API.Model.csproj" />
+    </ItemGroup>
+
 </Project>
