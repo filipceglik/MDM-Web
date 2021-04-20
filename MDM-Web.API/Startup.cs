@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MDM_Web.API.Helpers;
+using MDM_Web.API.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -60,6 +61,9 @@ namespace MDM_Web.API
                 });
 
             ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
+
+            services.AddSingleton(provider => new DatabaseContext("mongodb://localhost:27017"));
+            services.AddSingleton<DeviceRepository>();
             
             services.AddAuthorization(options =>
             {
