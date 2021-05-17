@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM-Web.API.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM-Web.API.Model", "MDM-Web.API.Model\MDM-Web.API.Model.csproj", "{9B98B2A0-1D6D-498A-AC9B-8A7A04041AEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM-Web.React", "MDM-Web.React\MDM-Web.React.csproj", "{39A974DE-2EDC-4C1A-A399-D793755EB4AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{9B98B2A0-1D6D-498A-AC9B-8A7A04041AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B98B2A0-1D6D-498A-AC9B-8A7A04041AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B98B2A0-1D6D-498A-AC9B-8A7A04041AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A974DE-2EDC-4C1A-A399-D793755EB4AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A974DE-2EDC-4C1A-A399-D793755EB4AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A974DE-2EDC-4C1A-A399-D793755EB4AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A974DE-2EDC-4C1A-A399-D793755EB4AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
