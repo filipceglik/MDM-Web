@@ -15,7 +15,7 @@ function Login(){
         <div className="container Login">
             <div className="row">
                 <div className="col-12">
-                    <Form className="login-form">
+                    <Form className="login-form card shadow-sm p-3">
                         <Form.Group size="lg" controlId="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" />
