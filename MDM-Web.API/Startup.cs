@@ -1,22 +1,19 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
+using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
+using CorePush.Apple;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MDM_Web.API.Controllers;
 using MDM_Web.API.Helpers;
 using MDM_Web.API.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -38,9 +35,14 @@ namespace MDM_Web.API
                 .AddControllers()
                 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
 
+            services.AddHttpClient();
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
+            var apnSettingsSection = Configuration.GetSection("ApnSettings");
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
+            var apnsSettings = apnSettingsSection.Get<ApnSettings>();
+            apnSettingsSection.Bind(apnsSettings);
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
                 {
@@ -101,6 +103,8 @@ namespace MDM_Web.API
                     }
                 });
             });
+            
+            services.AddSingleton(apnsSettings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

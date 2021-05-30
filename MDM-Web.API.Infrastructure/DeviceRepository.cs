@@ -21,7 +21,7 @@ namespace MDM_Web.API.Infrastructure
             .AsQueryable()
             .FirstOrDefaultAsync(x => x.deviceID == deviceID);
         
-        public async Task<bool> UpdateDeviceToken(byte[] deviceToken, string deviceID)
+        public async Task<bool> UpdateDeviceToken(string deviceToken, string deviceID)
         {
             var entity = await GetDeviceByID(deviceID);
             if (entity == null)

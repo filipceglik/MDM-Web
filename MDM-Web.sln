@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM-Web", "MDM-Web\MDM-Web.csproj", "{491BF410-3C58-440C-9477-2E39517E3A33}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM-Web.API", "MDM-Web.API\MDM-Web.API.csproj", "{5920C6EC-0FE3-47FA-B12F-3BA98B19DD16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM-Web.API.Infrastructure", "MDM-Web.API.Infrastructure\MDM-Web.API.Infrastructure.csproj", "{F2BD8D3F-CC47-4B59-9E32-C79717C2B874}"
@@ -14,10 +12,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{491BF410-3C58-440C-9477-2E39517E3A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{491BF410-3C58-440C-9477-2E39517E3A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{491BF410-3C58-440C-9477-2E39517E3A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{491BF410-3C58-440C-9477-2E39517E3A33}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5920C6EC-0FE3-47FA-B12F-3BA98B19DD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5920C6EC-0FE3-47FA-B12F-3BA98B19DD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5920C6EC-0FE3-47FA-B12F-3BA98B19DD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
