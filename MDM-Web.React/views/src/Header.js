@@ -6,7 +6,7 @@ function Header() {
         <div className="container-fluid shadow-sm ">
             <div className="row">
                 <div className="col-6 col-md-4 pt-2 pb-2">
-                    <img src="https://via.placeholder.com/50"/>
+                    <img id="logo" src="https://via.placeholder.com/50"/>
                 </div>
                 <div className="col-6 col-md-8">
                     <ul className="navbar h-100">

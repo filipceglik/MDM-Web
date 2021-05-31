@@ -4,6 +4,7 @@ import './index.css';
 import Login from "./Login";
 import reportWebVitals from './reportWebVitals';
 import Header from "./Header";
+import ConfigurationProfileDownload from "./Components/ConfigurationProfileDownload";
 
 
 ReactDOM.render(
