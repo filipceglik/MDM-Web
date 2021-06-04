@@ -4,22 +4,21 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>MDM_Web.API</RootNamespace>
         <Nullable>enable</Nullable>
+        <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
     </PropertyGroup>
+    
 
     <ItemGroup>
       <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+      <PackageReference Include="CorePush" Version="3.0.4" />
       <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models" />
-      <Folder Include="ViewModels" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\MDM-Web.API.Infrastructure\MDM-Web.API.Infrastructure.csproj" />
+      <ProjectReference Include="..\MDM-Web.API.Model\MDM-Web.API.Model.csproj" />
     </ItemGroup>
 
 

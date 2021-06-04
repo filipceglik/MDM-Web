@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using MDM_Web.API.Infrastructure;
+using MDM_Web.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -20,7 +21,7 @@ namespace MDM_Web.API.Controllers
         [HttpGet]
         public async Task<ActionResult<Device>> GetDevice(string deviceID)
         {
-            var dev = await _deviceRepository.GetDevice(deviceID);
+            var dev = await _deviceRepository.GetDeviceByID(deviceID);
             if (dev != null) return Ok(dev.Id);
             var newDevice = new Device
             {
@@ -28,8 +29,16 @@ namespace MDM_Web.API.Controllers
                 Id = Guid.NewGuid(),
             };
             await _deviceRepository.CreateDevice(newDevice);
-            dev = await _deviceRepository.GetDevice(deviceID);
+            dev = await _deviceRepository.GetDeviceByID(deviceID);
             return Ok(dev.Id);
+        }
+
+        [HttpPut("update")]
+        public async Task<ActionResult<Device>> PutDeviceToken([FromBody] PutDeviceTokenViewModel putDeviceTokenViewModel)
+        {
+            Console.WriteLine();
+            await _deviceRepository.UpdateDeviceToken(putDeviceTokenViewModel.deviceToken, putDeviceTokenViewModel.deviceID);
+            return Ok();
         }
     }
 }

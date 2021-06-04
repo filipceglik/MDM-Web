@@ -3,9 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>MDM_Web.API.Infrastructure</RootNamespace>
+        <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="CorePush" Version="3.0.4" />
       <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
     </ItemGroup>
 
