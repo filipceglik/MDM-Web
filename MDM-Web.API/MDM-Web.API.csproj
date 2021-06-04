@@ -17,10 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\MDM-Web.API.Infrastructure\MDM-Web.API.Infrastructure.csproj" />
       <ProjectReference Include="..\MDM-Web.API.Model\MDM-Web.API.Model.csproj" />
     </ItemGroup>
