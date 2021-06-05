@@ -38,6 +38,40 @@ namespace MDM_Web.API.Infrastructure
             return true;
         }
         
+        public async Task<bool> UpdateBatteryState(string deviceID, int batteryState)
+        {
+            var entity = await GetDeviceByID(deviceID);
+            if (entity == null)
+            {
+                return false;
+            }
+            
+            var filter = Builders<Model.Device>.Filter.Eq("deviceID", deviceID);
+            var update = Builders<Device>.Update.Set("BatteryState", batteryState);
+            await _databaseContext
+                .GetCollection<Device>()
+                .UpdateOneAsync(filter,update);
+            
+            return true;
+        }
+        
+        public async Task<bool> UpdateBatteryLevel(string deviceID, float batteryLevel)
+        {
+            var entity = await GetDeviceByID(deviceID);
+            if (entity == null)
+            {
+                return false;
+            }
+            
+            var filter = Builders<Model.Device>.Filter.Eq("deviceID", deviceID);
+            var update = Builders<Device>.Update.Set("BatteryLevel", batteryLevel);
+            await _databaseContext
+                .GetCollection<Device>()
+                .UpdateOneAsync(filter,update);
+            
+            return true;
+        }
+        
         public async Task<bool> CreateDevice(Device device)
         {
             var existingDevice = await GetDeviceByID(device.deviceID);

@@ -40,5 +40,32 @@ namespace MDM_Web.API.Controllers
             await _deviceRepository.UpdateDeviceToken(putDeviceTokenViewModel.deviceToken, putDeviceTokenViewModel.deviceID);
             return Ok();
         }
+
+        [HttpPost("battery/state")]
+        public async Task<ActionResult> PostBatteryState([FromBody] PostBatteryStateViewModel postBatteryStateViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            
+            return await _deviceRepository.UpdateBatteryState(postBatteryStateViewModel.DeviceId, postBatteryStateViewModel.BatteryState)
+                ? (ActionResult) Ok()
+                : BadRequest();
+        }
+        
+        [HttpPost("battery/level")]
+        public async Task<ActionResult> PostBatteryLevel([FromBody] PostBatteryLevelViewModel postBatteryLevelViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            return await _deviceRepository.UpdateBatteryLevel(postBatteryLevelViewModel.DeviceId,
+                postBatteryLevelViewModel.BatteryLevel)
+                ? (ActionResult) Ok()
+                : BadRequest();
+        }
     }
 }
