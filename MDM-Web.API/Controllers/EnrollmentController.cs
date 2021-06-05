@@ -32,10 +32,8 @@ namespace MDM_Web.API.Controllers
                 return NotFound();
             }
 
-            var notification = new AppleNotification
-            {
-                Aps = new AppleNotification.ApsPayload{Alert = $"Enrollment finished!"}
-            };
+            var notification = new AppleNotification();
+            notification.Aps = new AppleNotification.ApsPayload{Alert = $"Enrollment finished!"};
             var apnsResponse = await _apnSender.SendAsync(notification, dev.deviceToken);
             return apnsResponse.IsSuccess ? (ActionResult) Ok() : BadRequest();
         }
