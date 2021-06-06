@@ -40,5 +40,65 @@ namespace MDM_Web.API.Controllers
             await _deviceRepository.UpdateDeviceToken(putDeviceTokenViewModel.deviceToken, putDeviceTokenViewModel.deviceID);
             return Ok();
         }
+
+        [HttpPost("battery/state")]
+        public async Task<ActionResult> PostBatteryState([FromBody] PostBatteryStateViewModel postBatteryStateViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var batteryInfo = new BatteryInfo
+            {
+                deviceID = postBatteryStateViewModel.DeviceId,
+                BatteryState = postBatteryStateViewModel.BatteryState
+            };
+            
+            return await _deviceRepository.UpdateBatteryState(batteryInfo)
+                ? (ActionResult) Ok()
+                : BadRequest();
+        }
+        
+        [HttpPost("battery/level")]
+        public async Task<ActionResult> PostBatteryLevel([FromBody] PostBatteryLevelViewModel postBatteryLevelViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var batteryInfo = new BatteryInfo
+            {
+                deviceID = postBatteryLevelViewModel.DeviceId,
+                BatteryLevel = postBatteryLevelViewModel.BatteryLevel
+            };
+
+            return await _deviceRepository.UpdateBatteryLevel(batteryInfo)
+                ? (ActionResult) Ok()
+                : BadRequest();
+        }
+        
+        [HttpPost("info")]
+        public async Task<ActionResult> PostDeviceInfo([FromBody] PostDeviceInfoViewModel postDeviceInfoViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var deviceInfo = new DeviceInfo
+            {
+                deviceID = postDeviceInfoViewModel.DeviceId,
+                Model = postDeviceInfoViewModel.Model,
+                Name = postDeviceInfoViewModel.Name,
+                SystemVersion = postDeviceInfoViewModel.SystemVersion,
+                SystemName = postDeviceInfoViewModel.SystemName
+            };
+
+            return await _deviceRepository.UpdateDeviceInfo(deviceInfo)
+                ? (ActionResult) Ok()
+                : BadRequest();
+        }
     }
 }

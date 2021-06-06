@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 
 namespace Model
@@ -7,5 +8,6 @@ namespace Model
         public Guid Id { get; set; }
         public string deviceID { get; set; }
         public string? deviceToken { get; set; }
+        
     }
 }

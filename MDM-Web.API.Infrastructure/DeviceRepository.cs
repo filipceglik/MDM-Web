@@ -38,6 +38,40 @@ namespace MDM_Web.API.Infrastructure
             return true;
         }
         
+        public async Task<bool> UpdateBatteryState(BatteryInfo batteryInfo)
+        {
+            var entity = await GetDeviceByID(batteryInfo.deviceID);
+            if (entity == null)
+            {
+                return false;
+            }
+            
+            var filter = Builders<Model.Device>.Filter.Eq("deviceID", batteryInfo.deviceID);
+            var update = Builders<Device>.Update.Set("BatteryState", batteryInfo.BatteryState);
+            await _databaseContext
+                .GetCollection<Device>()
+                .UpdateOneAsync(filter,update);
+            
+            return true;
+        }
+        
+        public async Task<bool> UpdateBatteryLevel(BatteryInfo batteryInfo)
+        {
+            var entity = await GetDeviceByID(batteryInfo.deviceID);
+            if (entity == null)
+            {
+                return false;
+            }
+            
+            var filter = Builders<Model.Device>.Filter.Eq("deviceID", batteryInfo.deviceID);
+            var update = Builders<Device>.Update.Set("BatteryLevel", batteryInfo.BatteryLevel);
+            await _databaseContext
+                .GetCollection<Device>()
+                .UpdateOneAsync(filter,update);
+            
+            return true;
+        }
+        
         public async Task<bool> CreateDevice(Device device)
         {
             var existingDevice = await GetDeviceByID(device.deviceID);
@@ -49,6 +83,27 @@ namespace MDM_Web.API.Infrastructure
             await _databaseContext
                 .GetCollection<Device>()
                 .InsertOneAsync(device);
+            return true;
+        }
+        
+        public async Task<bool> UpdateDeviceInfo(DeviceInfo deviceInfo)
+        {
+            var entity = await GetDeviceByID(deviceInfo.deviceID);
+            if (entity == null)
+            {
+                return false;
+            }
+            
+            var filter = Builders<Model.Device>.Filter.Eq("deviceID", deviceInfo.deviceID);
+            var update = Builders<Device>.Update
+                .Set("Name", deviceInfo.Name)
+                .Set("SystemName", deviceInfo.SystemName)
+                .Set("SystemVersion", deviceInfo.SystemVersion)
+                .Set("Model", deviceInfo.Model);
+            await _databaseContext
+                .GetCollection<Device>()
+                .UpdateOneAsync(filter,update);
+            
             return true;
         }
     }
