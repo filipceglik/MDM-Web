@@ -48,8 +48,14 @@ namespace MDM_Web.API.Controllers
             {
                 return BadRequest();
             }
+
+            var batteryInfo = new BatteryInfo
+            {
+                deviceID = postBatteryStateViewModel.DeviceId,
+                BatteryState = postBatteryStateViewModel.BatteryState
+            };
             
-            return await _deviceRepository.UpdateBatteryState(postBatteryStateViewModel.DeviceId, postBatteryStateViewModel.BatteryState)
+            return await _deviceRepository.UpdateBatteryState(batteryInfo)
                 ? (ActionResult) Ok()
                 : BadRequest();
         }
@@ -62,8 +68,35 @@ namespace MDM_Web.API.Controllers
                 return BadRequest();
             }
 
-            return await _deviceRepository.UpdateBatteryLevel(postBatteryLevelViewModel.DeviceId,
-                postBatteryLevelViewModel.BatteryLevel)
+            var batteryInfo = new BatteryInfo
+            {
+                deviceID = postBatteryLevelViewModel.DeviceId,
+                BatteryLevel = postBatteryLevelViewModel.BatteryLevel
+            };
+
+            return await _deviceRepository.UpdateBatteryLevel(batteryInfo)
+                ? (ActionResult) Ok()
+                : BadRequest();
+        }
+        
+        [HttpPost("info")]
+        public async Task<ActionResult> PostDeviceInfo([FromBody] PostDeviceInfoViewModel postDeviceInfoViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var deviceInfo = new DeviceInfo
+            {
+                deviceID = postDeviceInfoViewModel.DeviceId,
+                Model = postDeviceInfoViewModel.Model,
+                Name = postDeviceInfoViewModel.Name,
+                SystemVersion = postDeviceInfoViewModel.SystemVersion,
+                SystemName = postDeviceInfoViewModel.SystemName
+            };
+
+            return await _deviceRepository.UpdateDeviceInfo(deviceInfo)
                 ? (ActionResult) Ok()
                 : BadRequest();
         }
