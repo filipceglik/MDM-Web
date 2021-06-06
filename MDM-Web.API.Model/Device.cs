@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 
 namespace Model
@@ -8,8 +9,5 @@ namespace Model
         public string deviceID { get; set; }
         public string? deviceToken { get; set; }
         
-        public int BatteryState { get; set; }
-        
-        public float BatteryLevel { get; set; }
     }
 }
