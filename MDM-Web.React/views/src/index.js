@@ -5,12 +5,13 @@ import Login from "./Login";
 import reportWebVitals from './reportWebVitals';
 import Header from "./Header";
 import ConfigurationProfileDownload from "./Components/ConfigurationProfileDownload";
+import HomePage from "./Components/HomePage";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        <Header/>
-        <Login/>
+        <HomePage />
+        <Login />
     </React.StrictMode>,
     document.getElementById('root')
 );
