@@ -7,8 +7,10 @@ import {useEffect, useState} from "react";
 import {LinkContainer} from "react-router-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Cookies from "universal-cookie";
+import { useHistory } from "react-router-dom";
 
 function App() {
+    const history = useHistory();
     const [isAuthenticated, userHasAuthenticated] = useState(false);
 
     function handleLogout(event) {
@@ -16,6 +18,7 @@ function App() {
         const cookies = new Cookies()
         cookies.remove("User")
         userHasAuthenticated(false);
+        history.push("/login");
     }
 
     const [isAuthenticating, setIsAuthenticating] = useState(true);
