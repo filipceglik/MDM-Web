@@ -6,8 +6,10 @@ import "../css/Login.css"
 import {useState} from "react";
 import {useAppContext} from "../libs/contextLib";
 import Cookies from "universal-cookie";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+    const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const {userHasAuthenticated} = useAppContext();
@@ -22,6 +24,7 @@ function Login() {
             const cookie = new Cookies()
             cookie.set('User', {email: email})
             userHasAuthenticated(true);
+            history.push("/");
         }else {
             alert("Błędne dane")
         }
