@@ -9,7 +9,10 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    
+    function validateForm() {
+        return email.length > 0 && password.length > 0;
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
     }
@@ -35,7 +38,7 @@ function Login() {
                             />
                         </Form.Group>
                         <Form.Group>
-                            <Button block size="lg" type="submit">
+                            <Button block size="lg" type="submit" disabled={!validateForm()}>
                                 Login
                             </Button>
                         </Form.Group>
