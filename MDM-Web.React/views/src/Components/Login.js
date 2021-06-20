@@ -4,10 +4,13 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import "../css/Login.css"
 import {useState} from "react";
+import {useAppContext} from "../libs/contextLib";
+import Cookies from "universal-cookie";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {userHasAuthenticated} = useAppContext();
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -15,6 +18,13 @@ function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        if (validateForm()) {
+            const cookie = new Cookies()
+            cookie.set('User', {email: email})
+            userHasAuthenticated(true);
+        }else {
+            alert("Błędne dane")
+        }
     }
 
     return (
