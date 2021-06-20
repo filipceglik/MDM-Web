@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import Header from "./Header";
 import ConfigurationProfileDownload from "./Components/ConfigurationProfileDownload";
 import HomePage from "./Components/HomePage";
+import App from "./App";
+import {BrowserRouter} from "react-router-dom";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        <HomePage />
-        <Login />
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

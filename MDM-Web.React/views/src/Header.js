@@ -1,21 +1,18 @@
 import 'bootstrap'
 import 'react-bootstrap'
+import Routes from "./Routes";
+import Navbar from "react-bootstrap/Navbar";
 
 function Header() {
     return (
-        <div className="container-fluid shadow-sm ">
-            <div className="row">
-                <div className="col-6 col-md-4 pt-2 pb-2">
-                    <img id="logo" src="https://via.placeholder.com/50"/>
-                </div>
-                <div className="col-6 col-md-8">
-                    <ul className="navbar h-100">
-                        <li className="nav-item">Test</li>
-                        <li className="nav-item">Test</li>
-                        <li className="nav-item">Test</li>
-                    </ul>
-                </div>
-            </div>
+        <div className="Header container py-3">
+            <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
+                <Navbar.Brand className="font-weight-bold text-muted">
+                    Scratch
+                </Navbar.Brand>
+                <Navbar.Toggle />
+            </Navbar>
+            <Routes />
         </div>
     );
 }
