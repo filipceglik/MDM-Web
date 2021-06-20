@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from "./Login";
 import reportWebVitals from './reportWebVitals';
-import Header from "./Header";
-import ConfigurationProfileDownload from "./Components/ConfigurationProfileDownload";
-import HomePage from "./Components/HomePage";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 
