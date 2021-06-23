@@ -8,16 +8,20 @@ import {useAppContext} from "../libs/contextLib";
 import Cookies from "universal-cookie";
 import {useHistory} from "react-router-dom";
 import LoaderButton from "./LoaderButton";
+import {useFormFields} from "../libs/hooksLib";
 
 function Login() {
     const history = useHistory();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const {userHasAuthenticated} = useAppContext();
     const [isLoading, setIsLoading] = useState(false);
 
+    const [fields, handleFieldChange] = useFormFields({
+        email: "",
+        password: ""
+    });
+
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return  fields.email.length > 0 && fields.password.length > 0;
     }
 
     function handleSubmit(event) {
@@ -27,7 +31,7 @@ function Login() {
 
         if (validateForm()) {
             const cookie = new Cookies()
-            cookie.set('User', {email: email})
+            cookie.set('User', {email: fields.email})
             userHasAuthenticated(true);
             history.push("/");
         } else {
@@ -45,15 +49,15 @@ function Login() {
                             <Form.Label>Email</Form.Label>
                             <Form.Control autoFocus
                                           type="email"
-                                          value={email}
-                                          onChange={(e) => setEmail(e.target.value)}
+                                          value={fields.email}
+                                          onChange={handleFieldChange}
                             />
                         </Form.Group>
                         <Form.Group size="lg" controlId="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password"
-                                          value={password}
-                                          onChange={(e) => setPassword(e.target.value)}
+                                          value={fields.password}
+                                          onChange={handleFieldChange}
                             />
                         </Form.Group>
                         <Form.Group>
