@@ -53,7 +53,7 @@ function App() {
                 <Navbar.Toggle/>
             </Navbar>
             <AppContext.Provider value={{isAuthenticated, userHasAuthenticated}}>
-                <Routes/>
+                <Routes />
             </AppContext.Provider>
         </div>
     );
