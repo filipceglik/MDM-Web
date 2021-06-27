@@ -37,6 +37,8 @@ namespace MDM_Web.API
 
             services.AddHttpClient();
 
+            services.AddHttpContextAccessor();
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             var apnSettingsSection = Configuration.GetSection("ApnSettings");
             services.Configure<AppSettings>(appSettingsSection);
