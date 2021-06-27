@@ -62,5 +62,13 @@ namespace MDM_Web.API.Controllers
             
         }
         
+        [Authorize(Roles = Role.Admin)]
+        [HttpPost("delete")]
+        public async Task<ActionResult> Delete([FromForm] DeleteUserViewModel deleteUserViewModel)
+        {
+            var user = await _userRepository.GetUser(deleteUserViewModel.UserName);
+            await _userRepository.Delete(user);
+            return Ok();
+        }
     }
 }
