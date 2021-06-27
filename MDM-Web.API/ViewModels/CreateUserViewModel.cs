@@ -9,5 +9,13 @@ namespace MDM_Web.API.ViewModels
         public string Role { get; set; }
     }
 
+    public class CreateUserViewModelValidator : AbstractValidator<CreateUserViewModel>
+    {
+        public CreateUserViewModelValidator()
+        {
+            RuleFor(x => x.Password).NotEmpty().MinimumLength(8).MaximumLength(40);
+            RuleFor(x => x.Role).Matches("(Admin|ReadOnly)");
+        }
+    }
     
 }
