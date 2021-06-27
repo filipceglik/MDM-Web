@@ -44,6 +44,23 @@ namespace MDM_Web.API.Controllers
 
         }
         
+        [Authorize]
+        [HttpPost("changepassword")]
+        public async Task<ActionResult> ChangePassword([FromForm] UpdateUserViewModel updateUserViewModel)
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var hashed = BCrypt.Net.BCrypt.HashPassword(updateUserViewModel.Password);
+            var user = await _userRepository.GetUser(updateUserViewModel.UserName);
+            if (BCrypt.Net.BCrypt.Verify(updateUserViewModel.OldPassword,user.Password))
+            {
+                user.Password = hashed;
+                await _userRepository.Update(user);
+                return Ok();
+            }
+
+            return BadRequest();
+            
+        }
         
     }
 }
