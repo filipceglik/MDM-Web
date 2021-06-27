@@ -32,5 +32,21 @@ namespace MDM_Web.API.Infrastructure
                 .InsertOneAsync(user);
             return true;
         }
+        
+        public async Task<bool> Update(User user)
+        {
+            var entity = await GetUser(user.UserName);
+
+            if (entity == null)
+                return false;
+
+            entity.Password = user.Password;
+
+            await _databaseContext
+                .GetCollection<User>()
+                .ReplaceOneAsync(x => x.UserName == user.UserName, entity);
+
+            return true;
+        }
     }
 }
