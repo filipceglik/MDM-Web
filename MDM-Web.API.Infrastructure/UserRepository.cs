@@ -48,5 +48,12 @@ namespace MDM_Web.API.Infrastructure
 
             return true;
         }
+        
+        public async Task Delete(User user)
+        {
+            await _databaseContext
+                .GetCollection<User>()
+                .DeleteOneAsync(x => x.UserName == user.UserName);
+        }
     }
 }
