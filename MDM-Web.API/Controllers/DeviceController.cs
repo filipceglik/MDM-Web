@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MDM_Web.API.Infrastructure;
 using MDM_Web.API.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -12,10 +15,12 @@ namespace MDM_Web.API.Controllers
     public class DeviceController : ControllerBase
     {
         private readonly DeviceRepository _deviceRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DeviceController(DeviceRepository deviceRepository)
+        public DeviceController(DeviceRepository deviceRepository, IHttpContextAccessor httpContextAccessor)
         {
             _deviceRepository = deviceRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
         
         [HttpGet]
@@ -32,7 +37,22 @@ namespace MDM_Web.API.Controllers
             dev = await _deviceRepository.GetDeviceByID(deviceID);
             return Ok(dev.Id);
         }
-
+        
+        [Authorize]
+        [HttpGet("index")]
+        public async Task<ActionResult<ICollection<Device>>> ListAllDevices()
+        {
+            if (HttpContext.User.IsInRole("Admin"))
+            {
+                var devices = _deviceRepository.GetAllDevices();
+            }
+            else
+            {
+                var devices = _deviceRepository.GetUserDevices(HttpContext.User.Identity.Name);
+            }
+            return Ok();
+        }
+        
         [HttpPut("update")]
         public async Task<ActionResult<Device>> PutDeviceToken([FromBody] PutDeviceTokenViewModel putDeviceTokenViewModel)
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Model;
 using MongoDB.Bson;
@@ -20,6 +21,17 @@ namespace MDM_Web.API.Infrastructure
             .GetCollection<Device>()
             .AsQueryable()
             .FirstOrDefaultAsync(x => x.deviceID == deviceID);
+        
+        public async Task<ICollection<Device>> GetUserDevices(string owner) => await _databaseContext
+            .GetCollection<Device>()
+            .AsQueryable()
+            .Where(x => x.Owner == owner)
+            .ToListAsync();
+        
+        public async Task<ICollection<Device>> GetAllDevices() => await _databaseContext
+            .GetCollection<Device>()
+            .AsQueryable()
+            .ToListAsync();
         
         public async Task<bool> UpdateDeviceToken(string deviceToken, string deviceID)
         {
