@@ -7,4 +7,12 @@ The underlying DB is MongoDB.
 
 https://github.com/filipceglik/MDM-iOS
 
+Current version supports: 
+* Device enrollment
+* Apple Push Notification service integration
+* User authorization, role management
+* JWT-based authentication
+* iOS system information API call
+* iOS battery state&level API calls
+
 I highly encourage and welcome any contributors to support a completely free and open-source mobile device management solution! 
